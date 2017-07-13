@@ -1,4 +1,4 @@
-#!/usr/bin/Python
+#!/usr/bin/python
 
 '''
 Problem 1
