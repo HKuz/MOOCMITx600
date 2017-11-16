@@ -104,12 +104,9 @@ def brute_force_cow_transport(cows, limit=10):
     best = None
     for test_trips in trip_options:
         # test_trips is a list of lists that represent the trip combos
-        print("Checking: {}".format(test_trips))
         weights = [sum([cows[cow] for cow in trip]) for trip in test_trips]
         is_valid = all([w <= limit for w in weights])
-        print("Valid?: {}".format(is_valid))
         if is_valid:
-            print("Found valid trip set: {}".format(test_trips))
             # Valid partition - all trips are within the weight limit
             if best is None:
                 # No valid trip found yet
@@ -145,11 +142,19 @@ Do not submit this along with any of your answers. Uncomment the last two
 lines to print the result of your problem.
 """
 
-# cows = load_cows("ps1_cow_data.txt")
-cows = load_cows("ps1_cow_dataTEST.txt")
+cows = load_cows("ps1_cow_data.txt")
+# cows = load_cows("ps1_cow_dataTEST.txt")
 limit = 10
 print("Ship weight limit: {}".format(limit))
 print(cows)
 
-# print(greedy_cow_transport(cows, limit))
-print("Best trip set: {}".format(brute_force_cow_transport(cows, limit)))
+start_g = time.time()
+print("Best trip set for GREEDY: {}".format(greedy_cow_transport(cows, limit)))
+end_g = time.time()
+print("Greedy time: {}".format(end_g - start_g))
+
+start_b = time.time()
+print("Best trip set for BRUTE FORCE: {}"
+      .format(brute_force_cow_transport(cows, limit)))
+end_b = time.time()
+print("Brute force time: {}".format(end_b - start_b))
